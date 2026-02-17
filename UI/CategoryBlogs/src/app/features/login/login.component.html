@@ -1,0 +1,19 @@
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="username">Username or Email</label>
+    <input id="username" name="username" type="text" [(ngModel)]="user.username" required />
+    <div *ngIf="loginForm.submitted && !user.username">
+      Username is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" [(ngModel)]="user.password" required minlength="6" />
+    <div *ngIf="loginForm.submitted && (!user.password || loginForm.controls['password']?.invalid)">
+      Password is required (min 6 chars).
+    </div>
+  </div>
+
+  <button type="submit">Login</button>
+</form>

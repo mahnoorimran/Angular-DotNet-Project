@@ -1,0 +1,30 @@
+<div class="add-category-container">
+  <h2>Add New Category</h2>
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Category Name</label>
+      <input id="categoryname" type="text" 
+        name="categoryname" placeholder="Enter category name"
+        [(ngModel)]="model.name"
+        required
+        #categoryname="ngModel"
+      />
+      <div class="error" *ngIf="categoryname.invalid && categoryname.touched">
+        Category name is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="categoryurlhandle">Category Url Handle</label>
+      <input id="categoryurlhandle" type="text"
+        name="categoryurlhandle" placeholder="URL Handle"
+        [(ngModel)]="model.urlHandle"
+        required
+        #categoryurlhandle="ngModel"
+      />
+      <div class="error" *ngIf="categoryurlhandle.invalid && categoryurlhandle.touched">
+        Category URL Handle is required.
+      </div>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Create Category</button>
+  </form>
+</div>

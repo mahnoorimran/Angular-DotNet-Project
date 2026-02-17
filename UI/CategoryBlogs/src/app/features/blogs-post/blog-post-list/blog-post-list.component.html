@@ -1,0 +1,26 @@
+<div class="blog-list-container">
+  <div class="header">
+    <h2>Blog Posts</h2>
+    <button class="add-blog-btn" [routerLink]="'/add-blog-post'">+ Add Blog Post</button>
+  </div>
+
+  <div  class="blog-cards" *ngFor="let blog of blogPosts$ | async">
+    <div  class="blog-card">
+      <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"  alt="Blog Image" class="blog-image" />
+      <div class="blog-content">
+        <h3 class="blog-title">{{blog.title}}</h3>
+        <p class="blog-snippet">Description : {{blog.shortDescription}}</p>
+        <p class="blog-snippet">Author:{{blog.author}}</p>
+        <div class="blog-actions">
+          <button class="edit-btn" >Edit</button>
+          <button class="delete-btn" >Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noBlogs>
+    <p class="no-blogs">No blog posts found. Click 'Add Blog Post' to create one!</p>
+  </ng-template>
+</div>
+

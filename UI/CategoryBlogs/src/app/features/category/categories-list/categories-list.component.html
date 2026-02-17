@@ -1,0 +1,28 @@
+<div class="categories-list-container">
+  <div class="header">
+    <h2>Categories</h2>
+    <button class="add-category-btn" (click)="onAddCategory()">+ Add Category</button>
+  </div>
+  <ng-container *ngIf="categories$ | async as categories; else noCategories">
+    <ul *ngIf="categories.length > 0; else noCategories">
+      <li class="category-item">
+        <span>ID</span>
+        <span>Name</span>
+        <span>URL</span>
+        <span class="actions">Actions</span>
+      </li>
+      <li *ngFor="let category of categories; let isLast = last" class="category-item">
+        <span>{{category.id}}</span>
+        <span>{{category.name}}</span>
+        <span>{{category.urlHandle}}</span>
+        <span class="actions">
+         <button class="edit-btn" [routerLink]="['/edit-category', category.id]">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </span>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #noCategories>
+    <p class="no-categories">No categories found.</p>
+  </ng-template>
+</div>

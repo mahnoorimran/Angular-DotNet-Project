@@ -1,0 +1,35 @@
+<form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" [(ngModel)]="user.username" required />
+    <div *ngIf="registerForm.submitted && !user.username">
+      Username is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" [(ngModel)]="user.email" required email />
+    <div *ngIf="registerForm.submitted && (!user.email || registerForm.controls['email']?.invalid)">
+      Valid email is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" [(ngModel)]="user.password" required minlength="6" />
+    <div *ngIf="registerForm.submitted && (!user.password || registerForm.controls['password']?.invalid)">
+      Password is required (min 6 chars).
+    </div>
+  </div>
+
+  <div>
+    <label for="confirmPassword">Confirm Password</label>
+    <input id="confirmPassword" name="confirmPassword" type="password" [(ngModel)]="user.confirmPassword" required />
+    <div *ngIf="registerForm.submitted && user.confirmPassword !== user.password">
+      Passwords must match.
+    </div>
+  </div>
+
+  <button type="submit">Register</button>
+</form>
